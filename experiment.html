@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>Braitenberg Experiment</title>
+    <script language=JavaScript src="mouse_v3.js"></script>
+    <script language=JavaScript src="graphics_v3.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_sim.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_bay.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_vehicle.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_arena.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_bulb.js"></script>
+    <script language=JavaScript src="braitenberg/braitenberg_environment.js"></script>
+    <link rel="stylesheet" href="braitenberg/braitenberg.css">
+</head>
+<body onLoad="init();">
+<table>
+    <tr>
+        <td colspan=3><canvas id="arenaBraitenberg" width="625" height="500"></canvas></td>
+    </tr>
+    <tr>
+        <td colspan=3 align=center>
+            <input type=button id="startButton" value="Pause simulation" onClick="javascript:toggleSimulation();">
+            <input type=button id="startButton" value="Save simulation setup"  onClick="javascript:saveSetup();">
+            <input type=button id="startButton" value="Load simulation setup"  onClick="javascript:loadInfo();">
+        </td>
+    </tr>
+    <tr>
+        <th colspan=2>Environment</th>
+    </tr>
+    <tr style = "display: none;">
+        <td>Number of lightbulbs: <span id=bulbLabel></span></td>
+        <td align=right><input type="range" id=bulbDial min="0" max="10" value=1 onInput="setBulbNumber(this.value);"></td>
+    </tr>
+    <tr>
+        <td>Number of vehicles: 10</td>
+    </tr>
+    <tr>
+        <th colspan= 2>Evolution</th>
+    </tr>
+    <tr style="display: none;">
+        <th colspan=2>Vehicle</th>
+    </tr>
+    <tr style="display: none;">
+        <td rowspan=10  align=center><canvas id="bayBraitenberg" width="110" height="110"></canvas></td>
+    </tr>
+    <tr style="display: none;">
+        <td>Default speed of left motor: <span id=leftMotorLabel></span></td>
+        <td align=right><input type="range" id=leftMotorDial min="-50" max="50" value=0 onInput="setLeftMotorValue(this.value);"></td>
+    </tr>
+    <tr style="display: none;">
+        <td>Default speed of right motor: <span id=rightMotorLabel></span></td>
+        <td align=right><input type="range" id=rightMotorDial min="-50" max="50" value=0 onInput="setRightMotorValue(this.value);"></td>
+    </tr>
+    <tr style="display: none;">
+        <td>Default illumination of lightbulb: <span id=lightBulbLabel></span></td>
+        <td align=right><input type="range" id=lightBulbDial min="0" max="100" value=0 onInput="setLightBulbValue(this.value);"></td>
+    </tr>
+    <tr style="display: none;">
+        <th colspan=2>Vehicle sensors</th>
+    </tr>
+    <tr style="display: none;">
+        <td>Number of sensors on vehicle: <span id=sensorLabel></span></td>
+        <td align=right><input type="range" id=sensorDial min="0" max="8" value=4 onInput="setSensorNumber(this.value);"></td>
+    </tr>
+    <tr style="display: none;">
+        <td>Selected
+            <select id="sensorEffectSelect" onChange="javascript:changeMotor(this.selectedIndex);">
+                <option>left motor</option>
+                <option>right motor</option>
+                <option>lightbulb</option>
+            </select>
+            <select id="sensorTypeSelect" onChange="javascript:changeType(this.selectedIndex);">
+                <option>light</option>
+                <option>distance</option>
+            </select>
+            sensor strength: <span id=sensorStrengthLabel></span>
+        </td>
+        <td align=right><input type="range" id=sensorStrengthDial min="-50" max="50" value=0 onInput= 	"setSensorStrength(this.value);"></td>
+    </tr>
+
+</table>
+<table id="evo">
+    <tr colspan=4 align=left>
+        <th>Breed</th>
+        <th>StrengthL</th>
+        <th>StrengthR</th>
+        <th>Lifespan</th>
+    </tr>
+    <tr colspan=4 align=left>
+        <td id="col0"></td>
+        <td id="col1"></td>
+        <td id="col2"></td>
+        <td id="col3"></td>
+    </tr>
+</table>
+</body>
+</html>
